@@ -4,7 +4,7 @@
 
 #include <xosd.h>
 
-#define CVS_VERSION "$Id: Osd.xs,v 1.3 2001/04/27 17:17:31 gozer Exp $"
+#define CVS_VERSION "$Id: Osd.xs,v 1.4 2002/08/26 17:05:55 gozer Exp $"
 
 static int
 not_here(char *s)
@@ -82,6 +82,23 @@ xosd_slider(osd,line,percent)
 	RETVAL
 			
 int
+xosd_is_onscreen(osd)
+	xosd *	osd
+
+int 
+xosd_wait_until_no_display(osd)
+	xosd *  osd
+
+int
+xosd_scroll(osd, lines)
+	xosd *  osd
+	int	lines
+	
+int
+xosd_get_number_lines(osd)
+	xosd * osd
+	
+int
 xosd_get_colour(osd, red, green, blue)
 	xosd *	osd
 	int *	red
@@ -93,13 +110,14 @@ xosd_hide(osd)
 	xosd *	osd
 
 xosd *
-xosd_init(font, colour, timeout, pos, offset, shadow_offset)
+xosd_init(font, colour, timeout, pos, offset, shadow_offset, number_lines=1)
 	char *	font
 	char *	colour
 	int	timeout
 	int	pos
 	int	offset
 	int	shadow_offset
+	int	number_lines
 
 int
 xosd_set_colour(osd, colour)

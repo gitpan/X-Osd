@@ -4,5 +4,8 @@ MANIFEST
 Makefile.PL
 Osd.pm
 Osd.xs
-test.pl
 typemap
+SIGNATURE
+MANIFEST.SKIP
+t/0-signature.t
+t/1-basic.t
