@@ -26,12 +26,16 @@ use vars
           string
           slider
           percentage
+          printf
           get_colour
           hide
+          set_bar_length
           set_colour
           set_font
-          set_offset
+          set_horizontal_offset
+          set_vertical_offset
           set_pos
+          set_align
           set_shadow_offset
           set_timeout
           show
@@ -48,10 +52,14 @@ use vars
 @EXPORT = qw(
   XOSD_top
   XOSD_bottom
+  XOSD_middle
+  XOSD_left
+  XOSD_center
+  XOSD_right
   );
 
-$VERSION     = '0.6';
-$CVS_VERSION = sprintf '%s', q$Revision: 1.15 $ =~ /: ([0-9.]*)/;
+$VERSION     = '0.7';
+$CVS_VERSION = sprintf '%s', q$Revision: 1.17 $ =~ /: ([0-9.]*)/;
 
 sub AUTOLOAD
 {
@@ -98,11 +106,12 @@ sub AUTOLOAD
 sub new
 {
     my $class = shift;
-    return init(@_);
+    return create(@_);
 }
 
 #Backwards compatibility
-sub set_offset {
+sub set_offset
+{
     my ($self, $offset) = @_;
     my $success;
     $self->set_horizontal_offset($offset);
@@ -123,17 +132,26 @@ X::Osd - Perl extension to the X On Screen Display library (xosd)
 =head1 SYNOPSIS
 
   use X::Osd;
-  my $osd = X::Osd->new("-*-lucidatypewriter-medium-r-normal-*-*-250-*-*-*-*-*-*","Green",3,XOSD_top,1,2);
+  my $osd = X::Osd->new(NULL, 2);
+  $osd->set_font("-*-lucidatypewriter-medium-r-normal-*-*-25-*-*-*-*-*-*");
+  $osd->set_colour("Green");
+  $osd->set_timeout(3);
+  $osd->set_pos(XOSD_top);
+  $osd->set_align(XOSD_right);
+  $osd->set_horizontal_offset(0);
+  $osd->set_vertical_offset(10);
+  $osd->set_shadow_offset(2);
+
   $osd->string(0,'Hello World!');
   $osd->percentage(0,56);
   $osd->slider(0,34);
 
 =head1 DESCRIPTION
 
-XOSD displays text on your screen, sounds simple right? The difference is it is unmanaged and shaped, 
+XOSD displays text on your screen, sounds simple right? The difference is it is unmanaged and shaped,
 so it appears transparent. This gives the effect of an On Screen Display, like your TV/VCR etc..
 
-It currently supports 3 type of writes, string for simple text, slider and percentage display.
+It currently supports 3 type of writes, string for simple text, printf formatted text, slider and percentage display.
 
 You need to have libxosd installed.  You can get it from http://www.ignavus.net/software.html
 
@@ -144,47 +162,65 @@ None by default.
 =head2 Exported constants
 
   XOSD_top
+  XOSD_middle
   XOSD_bottom
+  XOSD_left
+  XOSD_center
+  XOSD_right
 
 =head2 Exportable functions
 
 =over 4
 
-=item *new(font,colour,timeout,position,offset,shadow_offset,[number_lines=1])
-
-where pos is one of (XOSD_top, XOSD_bottom)
+=item * create(disp, number_lines);
 
 =item * string(line,string)
 
+=item * printf(line, string)
+
 =item *	percentage(line,percentage)
 
-where percentage is between 0 and 100
+	where percentage is between 0 and 100
 
-=item *slider(line,percentage)
+=item * slider(line,percentage)
 
-where percentage is between 0 and 100
+	where percentage is between 0 and 100
 
 =item * get_colour(red,green,blue)
+
+=item * get_shadow_colour(red,green,blue)
+
+=item * get_outline_colour(red,green,blue)
 
 =item * hide()
 
 =item * show()
 
+=item * set_bar_length(osd, lenght)
+
 =item * set_colour(color)
+
+=item * set_shadow_colour(shadow_colour)
+
+=item * set_outline_colour(outline_colour)
 
 =item * set_font(font)
 
-=item * set_offset(offset)
+=item * set_vertical_offset(offset)
 
 =item * set_horizontal_offset(offset)
 
-=item * set_vertical_offset(offset)
-
 =item * set_pos(pos)
 
-where pos is one of (XOSD_top, XOSD_bottom)
+where pos is one of (XOSD_top, XOSD_middle, XOSD_bottom)
+
+=item * set_align(align)
+
+where align is one of (XOSD_left, XOSD_center, XOSD_right)
 
 =item * set_shadow_offset(shadow_offset)
+
+=item * set_outline_offset(outline_offset)
 
 =item * set_timeout(timeout)
 
@@ -204,22 +240,23 @@ Philippe M. Chiasson E<lt>gozer@cpan.orgE<gt>
 
 =head1 CREDITS
 
-Bjorn Bringert E<lt>bjorn@bringert.netE<gt> xosd-1.0.x fixes
+ Bjorn Bringert E<lt>bjorn@bringert.netE<gt> xosd-1.0.x fixes
+ Etan Reisner E<lt>deryni@eden.rutgers.eduE<gt> provided a patch for new xosd faatures
 
 =head1 VERSION
 
-This is revision $Id: Osd.pm,v 1.15 2003/04/24 07:48:00 gozer Exp $
+This is revision $Id: Osd.pm,v 1.17 2003/07/01 12:52:19 gozer Exp $
 
 =head1 CVS
-    The CVS repository of X::Osd is avaliabe thru anoncvs at:
+The CVS repository of X::Osd is avaliabe thru anoncvs at:
 
-     $> cvs -d :pserver:anoncvs@cvs.ectoplasm.org:/home/anoncvs login
-     password: anoncvs
-     $> cvs -d :pserver:anoncvs@cvs.ectoplasm.org:/home/anoncvs co X-Osd
+ $> cvs -d :pserver:anoncvs@cvs.ectoplasm.org:/home/anoncvs login
+ password: anoncvs
+ $> cvs -d :pserver:anoncvs@cvs.ectoplasm.org:/home/anoncvs co X-Osd
 
 =head1 COPYRIGHT
 
-Copyright (c) 2002 Philippe M. Chiasson. All rights reserved. This program is free software, 
+Copyright (c) 2002-2003 Philippe M. Chiasson. All rights reserved. This program is free software,
 you can redistribute it and/or modify it under the same terms as Perl itself.
 
 =head1 SEE ALSO

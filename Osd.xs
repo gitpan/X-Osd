@@ -4,7 +4,7 @@
 
 #include <xosd.h>
 
-#define CVS_VERSION "$Id: Osd.xs,v 1.6 2003/04/24 07:34:53 gozer Exp $"
+#define CVS_VERSION "$Id: Osd.xs,v 1.7 2003/07/01 12:51:18 gozer Exp $"
 
 static int
 not_here(char *s)
@@ -23,6 +23,18 @@ constant(char *name, int len, int arg)
 	else if (strEQ(name + 0, "XOSD_bottom")) {
 	return XOSD_bottom;
     }
+	else if (strEQ(name + 0, "XOSD_middle")) {
+		return XOSD_middle;
+	}
+	else if (strEQ(name + 0, "XOSD_left")) {
+		return XOSD_left;
+	}
+	else if (strEQ(name + 0, "XOSD_center")) {
+		return XOSD_center;
+	}
+	else if (strEQ(name + 0, "XOSD_right")) {
+		return XOSD_right;
+	}
 	
     errno = EINVAL;
     return 0;
@@ -36,15 +48,18 @@ double
 constant(sv,arg)
     PREINIT:
 	STRLEN		len;
+
     INPUT:
 	SV *		sv
 	char *		s = SvPV(sv, len);
 	int		arg
+
     CODE:
 	RETVAL = constant(s,len,arg);
+
     OUTPUT:
 	RETVAL
-			
+		
 int			
 xosd_string(osd,line,string)
 	xosd *	osd
@@ -56,7 +71,20 @@ xosd_string(osd,line,string)
 	
 	OUTPUT:
 	RETVAL	
-			
+
+int
+xosd_printf(osd,line,string)
+	xosd *	osd
+	int		line
+	char *	string
+
+	CODE:
+		RETVAL = xosd_display(osd,line,XOSD_printf,string);
+
+	OUTPUT:
+		RETVAL
+
+
 int
 xosd_percentage(osd,line,percent)
 	xosd *	osd
@@ -105,22 +133,53 @@ xosd_get_colour(osd, red, green, blue)
 	int *	green
 	int *	blue
 
+#if 0
+
+int
+xosd_get_shadow_colour(osd, red, green, blue)
+	xosd *	osd
+	int *	red
+	int *	green
+	int *	blue
+
+#endif
+
+#if 0
+
+int
+xosd_get_outline_colour(osd, red, green, blue)
+	xosd *	osd
+	int *	red
+	int *	green
+	int *	blue
+
+#endif
+
 int
 xosd_hide(osd)
 	xosd *	osd
 
 xosd *
-xosd_init(font, colour, timeout, pos, offset, shadow_offset, number_lines=1)
-	char *	font
-	char *	colour
-	int	timeout
-	int	pos
-	int	offset
-	int	shadow_offset
-	int	number_lines
+xosd_create(num_lines)
+	int	num_lines
+
+int
+xosd_set_bar_length(osd, length)
+	xosd *	osd
+	int	length
 
 int
 xosd_set_colour(osd, colour)
+	xosd *	osd
+	char *	colour
+
+int
+xosd_set_shadow_colour(osd, colour)
+	xosd *	osd
+	char *	colour
+
+int
+xosd_set_outline_colour(osd, colour)
 	xosd *	osd
 	char *	colour
 
@@ -145,9 +204,19 @@ xosd_set_pos(osd, pos)
 	int	pos
 
 int
+xosd_set_align(osd, align)
+	xosd *	osd
+	int	align
+
+int
 xosd_set_shadow_offset(osd, shadow_offset)
 	xosd *	osd
 	int	shadow_offset
+
+int
+xosd_set_outline_offset(osd, outline_offset)
+	xosd *	osd
+	int	outline_offset
 
 int
 xosd_set_timeout(osd, timeout)
