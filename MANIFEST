@@ -1,0 +1,8 @@
+Changes
+README
+MANIFEST
+Makefile.PL
+Osd.pm
+Osd.xs
+test.pl
+typemap

@@ -1,0 +1,77 @@
+NAME
+    X::Osd - Perl extension to the X On Screen Display library (xosd)
+
+SYNOPSIS
+      use X::Osd;
+      my $osd = X::Osd->new("-*-lucidatypewriter-medium-r-normal-*-*-250-*-*-*-*-*-*","Green",3,XOSD_top,1,2);
+      $osd->string(0,'Hello World!');
+      $osd->percentage(0,56);
+      $osd->slider(0,34);
+
+DESCRIPTION
+    XOSD displays text on your screen, sounds simple right? The difference
+    is it is unmanaged and shaped, so it appears transparent. This gives the
+    effect of an On Screen Display, like your TV/VCR etc..
+
+    It currently supports 3 type of writes, string for simple text, slider
+    and percentage display.
+
+    You need to have libxosd installed. You can get it from
+    http://www.ignavus.net/software.html
+
+  EXPORT
+
+    None by default.
+
+  Exported constants
+
+      XOSD_top
+      XOSD_bottom
+
+  Exportable functions
+
+    *new(font,colour,timeout,position,offset,shadow_offset)
+        where pos is one of (XOSD_top, XOSD_bottom)
+
+    * string(line,string)
+    * percentage(line,percentage)
+        where percentage is between 0 and 100
+
+    *slider(line,percentage)
+        where percentage is between 0 and 100
+
+    * get_colour(red,green,blue)
+    * hide()
+    * show()
+    * set_colour(color)
+    * set_font(font)
+    * set_offset(offset)
+    * set_pos(pos)
+        where pos is one of (XOSD_top, XOSD_bottom)
+
+    * set_shadow_offset(shadow_offset)
+    * set_timeout(timeout()
+AUTHOR
+    Philippe M. Chiasson <gozer@cpan.org>
+
+VERSION
+    This is revision $Id: Osd.pm,v 1.6 2001/04/27 17:17:31 gozer Exp $
+
+CVS
+    The CVS repository of X::Osd is avaliabe thru anoncvs at:
+
+     $> cvs -d:pserver:anoncvs@cvs.smartworker.org:/home/cvs/local login
+     password: anoncvs
+     $> cvs -d:pserver:anoncvs@cvs.smartworker.org:/home/cvs/local checkout X-Osd
+
+COPYRIGHT
+    Copyright (c) 2001 Philippe M. Chiasson. All rights reserved. This
+    program is free software, you can redistribute it and/or modify it under
+    the same terms as Perl itself.
+
+SEE ALSO
+    the perl manpage
+
+    Home & Author of XOSD http://www.ignavus.net/software.html
+    <spoonboy@ignavus.net>
+
