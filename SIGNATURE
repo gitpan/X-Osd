@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.20.
+signed via the Module::Signature module, version 0.21.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -18,16 +18,16 @@ SHA1 a4c4be69b997b744166ec52c98af26df0db3507c Changes
 SHA1 c2507b5f39c3e748836e843fe6131332b145386b MANIFEST
 SHA1 a279841a51739aa5e3c13d0fb711105b91dc5849 MANIFEST.SKIP
 SHA1 649b4dd0235abf5dba079374462e45c2168bda78 Makefile.PL
-SHA1 364748957c357f695249332296454d41ae3d506a Osd.pm
-SHA1 6bb4a25628754c8addfe21b179630c5a50ec29dc Osd.xs
-SHA1 47fc1235f2773d980672d4fa4080cca1ea0422a2 README
+SHA1 d074233964fa2fd783f662705c1de67e2322a050 Osd.pm
+SHA1 ea2e14415c4b524313f05a67fae9fd657a16a33c Osd.xs
+SHA1 b1bfda2116f3b6a7573739f810d56093e698cd90 README
 SHA1 067cd305b96bcd7784a0036d32ec04e1feae3df7 t/0-signature.t
-SHA1 287fd08994ccb046898d93c7b23a3ff871ae41db t/1-basic.t
+SHA1 63cece4126fb584435c3f888491a88dd2067a161 t/1-basic.t
 SHA1 d1c3cc95221d777f7e4b9786dff5088c47c6b134 typemap
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.0.7 (GNU/Linux)
 
-iD8DBQE9yJetyzKhB4jDpaURArfLAJ9q791/Ami3qpBAodrzN2Wnne74bQCeMRxl
-nGvPmA+OPdJ70Tuypm6f1IU=
-=dwjH
+iD8DBQE+RgTCyzKhB4jDpaURAgTEAKCgpM/xCXGbw8BLPuxl2aF4ga+ODACeMqBk
+KmpExe8oiNrpZE2BlE8pzzs=
+=ablc
 -----END PGP SIGNATURE-----

@@ -20,13 +20,16 @@ DESCRIPTION
     http://www.ignavus.net/software.html
 
   EXPORT
+
     None by default.
 
   Exported constants
+
       XOSD_top
       XOSD_bottom
 
   Exportable functions
+
     *new(font,colour,timeout,position,offset,shadow_offset,[number_lines=1])
         where pos is one of (XOSD_top, XOSD_bottom)
 
@@ -52,7 +55,6 @@ DESCRIPTION
     * wait_until_no_display()
     * scroll(lines)
     * get_number_lines()
-
 AUTHOR
     Philippe M. Chiasson <gozer@cpan.org>
 
@@ -60,13 +62,7 @@ CREDITS
     Bjorn Bringert <bjorn@bringert.net> xosd-1.0.x fixes
 
 VERSION
-    This is revision $Id: Osd.pm,v 1.10 2002/11/06 03:51:55 gozer Exp $
-
-CVS
-    The CVS repository of X::Osd is avaliabe thru anoncvs at:
-         $> cvs -d :pserver:anoncvs@cvs.ectoplasm.org:/home/anoncvs login
-         password: anoncvs
-         $> cvs -d :pserver:anoncvs@cvs.ectoplasm.org:/home/anoncvs co X-Osd
+    This is revision $Id: Osd.pm,v 1.8 2002/08/26 17:05:55 gozer Exp $
 
 COPYRIGHT
     Copyright (c) 2002 Philippe M. Chiasson. All rights reserved. This
@@ -74,7 +70,7 @@ COPYRIGHT
     the same terms as Perl itself.
 
 SEE ALSO
-    perl
+    the perl manpage
 
     Home & Author of XOSD http://www.ignavus.net/software.html
     <spoonboy@ignavus.net>

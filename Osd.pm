@@ -50,8 +50,8 @@ use vars
   XOSD_bottom
   );
 
-$VERSION     = '0.4';
-$CVS_VERSION = sprintf '%s', q$Revision: 1.10 $ =~ /: ([0-9.]*)/;
+$VERSION     = '0.5';
+$CVS_VERSION = sprintf '%s', q$Revision: 1.12 $ =~ /: ([0-9.]*)/;
 
 sub AUTOLOAD
 {
@@ -99,6 +99,15 @@ sub new
 {
     my $class = shift;
     return init(@_);
+}
+
+#Backwards compatibility
+sub set_offset {
+    my ($self, $offset) = @_;
+    my $success;
+    $self->set_horizontal_offset($offset);
+    $self->set_horizontal_offset($offset);
+    return $offset;
 }
 
 sub DESTROY
@@ -173,6 +182,10 @@ where percentage is between 0 and 100
 
 =item * set_offset(offset)
 
+=item * set_horizontal_offset(offset)
+
+=item * set_vertical_offset(offset)
+
 =item * set_pos(pos)
 
 where pos is one of (XOSD_top, XOSD_bottom)
@@ -201,7 +214,7 @@ Bjorn Bringert E<lt>bjorn@bringert.netE<gt> xosd-1.0.x fixes
 
 =head1 VERSION
 
-This is revision $Id: Osd.pm,v 1.10 2002/11/06 03:51:55 gozer Exp $
+This is revision $Id: Osd.pm,v 1.12 2003/02/09 07:35:16 gozer Exp $
 
 =head1 CVS
     The CVS repository of X::Osd is avaliabe thru anoncvs at:

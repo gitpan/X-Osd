@@ -4,7 +4,7 @@
 
 #include <xosd.h>
 
-#define CVS_VERSION "$Id: Osd.xs,v 1.4 2002/08/26 17:05:55 gozer Exp $"
+#define CVS_VERSION "$Id: Osd.xs,v 1.5 2003/02/09 07:30:10 gozer Exp $"
 
 static int
 not_here(char *s)
@@ -130,7 +130,12 @@ xosd_set_font(osd, font)
 	char *	font
 
 int
-xosd_set_offset(osd, offset)
+xosd_set_horizontal_offset(osd, offset)
+	xosd *	osd
+	int	offset
+
+int
+xosd_set_vertical_offset(osd, offset)
 	xosd *	osd
 	int	offset
 
