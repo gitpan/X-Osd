@@ -8,3 +8,5 @@ CVS
 Osd.c
 Osd.bs
 Osd.o
+tar\.gz$
+^X-Osd-

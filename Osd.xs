@@ -4,7 +4,7 @@
 
 #include <xosd.h>
 
-#define CVS_VERSION "$Id: Osd.xs,v 1.5 2003/02/09 07:30:10 gozer Exp $"
+#define CVS_VERSION "$Id: Osd.xs,v 1.6 2003/04/24 07:34:53 gozer Exp $"
 
 static int
 not_here(char *s)
@@ -159,5 +159,7 @@ xosd_show(osd)
 	xosd *	osd
 
 int
-xosd_uninit(osd)
+xosd_destroy(osd)
 	xosd *	osd
+    ALIAS:
+    DESTROY = 1

@@ -50,8 +50,8 @@ use vars
   XOSD_bottom
   );
 
-$VERSION     = '0.5';
-$CVS_VERSION = sprintf '%s', q$Revision: 1.12 $ =~ /: ([0-9.]*)/;
+$VERSION     = '0.6';
+$CVS_VERSION = sprintf '%s', q$Revision: 1.15 $ =~ /: ([0-9.]*)/;
 
 sub AUTOLOAD
 {
@@ -108,12 +108,6 @@ sub set_offset {
     $self->set_horizontal_offset($offset);
     $self->set_horizontal_offset($offset);
     return $offset;
-}
-
-sub DESTROY
-{
-    my $self = shift;
-    uninit($self);
 }
 
 bootstrap X::Osd $VERSION;
@@ -214,7 +208,7 @@ Bjorn Bringert E<lt>bjorn@bringert.netE<gt> xosd-1.0.x fixes
 
 =head1 VERSION
 
-This is revision $Id: Osd.pm,v 1.12 2003/02/09 07:35:16 gozer Exp $
+This is revision $Id: Osd.pm,v 1.15 2003/04/24 07:48:00 gozer Exp $
 
 =head1 CVS
     The CVS repository of X::Osd is avaliabe thru anoncvs at:
@@ -230,7 +224,7 @@ you can redistribute it and/or modify it under the same terms as Perl itself.
 
 =head1 SEE ALSO
 
-L<perl>
+I<perl>
 
 Home & Author of XOSD
 http://www.ignavus.net/software.html E<lt>spoonboy@ignavus.netE<gt>

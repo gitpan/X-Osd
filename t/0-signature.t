@@ -1,5 +1,9 @@
 #!/usr/bin/perl
 use strict;
+
+if ( ! -e 'SIGNATURE' ) { print "1..0\n"; exit }
+
+
 print "1..1\n";
 
 if (!eval { require Socket; Socket::inet_aton('pgp.mit.edu') })
